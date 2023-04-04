@@ -27,3 +27,222 @@ Started GET "/favicon.ico" for 127.0.0.1 at 2023-04-04 06:50:50 -0400
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+  [1m[35m (195.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (118.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3325517526836561910)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20230404112914)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (95.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "name" character varying NOT NULL, "address" character varying NOT NULL, "role" integer DEFAULT 0, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (30.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (42.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230404112914"]]
+  [1m[36mTRANSACTION (15.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-04-04 11:38:52.701240"], ["updated_at", "2023-04-04 11:38:52.701240"]]
+  [1m[36mTRANSACTION (10.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(3325517526836561910)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE DATABASE "brokerapp_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE DATABASE "brokerapp_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3325517526836561910)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddJtiToUsers (20230404114541)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "users" ADD "jti" character varying NOT NULL[0m
+  [1m[35m (111.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_jti" ON "users" ("jti")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230404114541"]]
+  [1m[36mTRANSACTION (22.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(3325517526836561910)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-04-04 08:28:32 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomesController#index as HTML
+Completed 200 OK in 19ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 3246)
+
+
+Started GET "/" for 127.0.0.1 at 2023-04-04 08:28:40 -0400
+Processing by HomesController#index as */*
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 114)
+
+
+Started GET "/" for 127.0.0.1 at 2023-04-04 08:30:05 -0400
+Processing by HomesController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/info/route" for 127.0.0.1 at 2023-04-04 08:30:18 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/info/route"):
+  
+Started GET "/route" for 127.0.0.1 at 2023-04-04 08:32:02 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/route"):
+  
+Started GET "/rails/info/route" for 127.0.0.1 at 2023-04-04 08:33:23 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/rails/info/route"):
+  
+Started GET "/rails/info/routes" for 127.0.0.1 at 2023-04-04 08:34:35 -0400
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/ijeoma/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.4.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/ijeoma/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.4.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/ijeoma/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/actionpack-7.0.4.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [36 times] (Duration: 27.0ms | Allocations: 5880)
+  Rendered /home/ijeoma/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/actionpack-7.0.4.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 3.3ms | Allocations: 853)
+  Rendered /home/ijeoma/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.4.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 39.4ms | Allocations: 10063)
+  Rendered layout /home/ijeoma/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.4.3/lib/rails/templates/layouts/application.html.erb (Duration: 42.1ms | Allocations: 10340)
+Completed 200 OK in 57ms (Views: 46.6ms | Allocations: 12459)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2023-04-04 08:38:25 -0400
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"illinois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}, "session"=>{"user"=>{"email"=>"illinois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "illinois@mail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 62ms (ActiveRecord: 27.0ms | Allocations: 7138)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2023-04-04 08:39:23 -0400
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "appleois@mail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.6ms | Allocations: 1262)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2023-04-04 08:39:52 -0400
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "appleois@mail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.5ms | Allocations: 1155)
+
+
+Started POST "/api/auth/signup" for 127.0.0.1 at 2023-04-04 08:40:55 -0400
+Processing by Users::RegistrationsController#create as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}, "registration"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "appleois@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (2.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "name", "address", "role", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["email", "appleois@mail.com"], ["encrypted_password", "[FILTERED]"], ["name", "illinois"], ["address", "Germany"], ["role", 0], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-04-04 12:40:55.980073"], ["updated_at", "2023-04-04 12:40:55.980073"], ["jti", "7207d8b4-be29-4d77-82f5-cce70cf132b6"]]
+  [1m[36mTRANSACTION (86.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 670ms (Views: 0.4ms | ActiveRecord: 90.0ms | Allocations: 14558)
+
+
+Started DELETE "/api/auth/logout" for 127.0.0.1 at 2023-04-04 08:43:01 -0400
+Processing by Users::SessionsController#destroy as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}}}
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 236)
+
+
+Started DELETE "/api/auth/logout" for 127.0.0.1 at 2023-04-04 08:43:08 -0400
+Processing by Users::SessionsController#destroy as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]", "name"=>"illinois", "address"=>"Germany"}}}
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 161)
+
+
+Started DELETE "/api/auth/logout" for 127.0.0.1 at 2023-04-04 08:43:39 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "user": {
+    "email":"appleois@mail.com",
+    "password":"password",
+  }
+}
+Processing by Users::SessionsController#destroy as */*
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 173)
+
+
+Started DELETE "/api/auth/logout" for 127.0.0.1 at 2023-04-04 08:43:53 -0400
+Processing by Users::SessionsController#destroy as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}}}
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 161)
+
+
+Started DELETE "/api/auth/logout" for 127.0.0.1 at 2023-04-04 08:44:08 -0400
+Processing by Users::SessionsController#destroy as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}}}
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 161)
+
+
+Started DELETE "/api/auth/logout" for 127.0.0.1 at 2023-04-04 08:44:19 -0400
+Processing by Users::SessionsController#destroy as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com"}, "session"=>{"user"=>{"email"=>"appleois@mail.com"}}}
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 161)
+
+
+Started DELETE "/api/auth/login" for 127.0.0.1 at 2023-04-04 08:47:19 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/api/auth/login"):
+  
+Started DELETE "/api/auth/login" for 127.0.0.1 at 2023-04-04 08:47:21 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/api/auth/login"):
+  
+Started DELETE "/api/auth/login" for 127.0.0.1 at 2023-04-04 08:47:22 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/api/auth/login"):
+  
+Started POST "/api/auth/login" for 127.0.0.1 at 2023-04-04 08:47:53 -0400
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "appleois@mail.com"], ["LIMIT", 1]]
+Completed 200 OK in 440ms (Views: 0.3ms | ActiveRecord: 12.5ms | Allocations: 4968)
+
+
+Started DELETE "/api/auth/logout" for 127.0.0.1 at 2023-04-04 08:48:14 -0400
+Processing by Users::SessionsController#destroy as */*
+  Parameters: {"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"appleois@mail.com", "password"=>"[FILTERED]"}}}
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 161)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3325517526836561910)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCompanies (20230404125119)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (185.9ms)[0m  [1m[35mCREATE TABLE "companies" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (41.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_companies_on_name" ON "companies" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230404125119"]]
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCategories (20230404125641)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (109.0ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (39.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_categories_on_name" ON "categories" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230404125641"]]
+  [1m[36mTRANSACTION (16.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20230404130221)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (92.1ms)[0m  [1m[35mCREATE TABLE "products" ("id" bigserial primary key, "category_id" bigint NOT NULL, "company_id" bigint NOT NULL, "name" character varying NOT NULL, "price" float NOT NULL, "description" text NOT NULL, "img" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_fb915499a4"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+, CONSTRAINT "fk_rails_438d5b34ce"
+FOREIGN KEY ("company_id")
+  REFERENCES "companies" ("id")
+)[0m
+  [1m[35m (48.3ms)[0m  [1m[35mCREATE INDEX "index_products_on_category_id" ON "products" ("category_id")[0m
+  [1m[35m (42.5ms)[0m  [1m[35mCREATE INDEX "index_products_on_company_id" ON "products" ("company_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230404130221"]]
+  [1m[36mTRANSACTION (12.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrders (20230404131159)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (49.8ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "product_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_dfb33b2de0"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("id")
+, CONSTRAINT "fk_rails_f868b47f6a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (50.5ms)[0m  [1m[35mCREATE INDEX "index_orders_on_product_id" ON "orders" ("product_id")[0m
+  [1m[35m (52.9ms)[0m  [1m[35mCREATE INDEX "index_orders_on_user_id" ON "orders" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230404131159"]]
+  [1m[36mTRANSACTION (13.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(3325517526836561910)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
