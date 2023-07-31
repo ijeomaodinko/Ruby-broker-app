@@ -5,7 +5,7 @@ class Ability
 
   def initialize(user)
 
-    User ||= User.new #guest user (not logged in)
+    # User ||= User.new #guest user (not logged in)
     can :read, Product, public: true
     can :read, Company, public: true
     can :read, Category, public: true

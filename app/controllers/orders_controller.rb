@@ -3,16 +3,17 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   # GET /orders
   def index
-    @orders = Order.all
+    # @orders = Order.all
+    @orders = current_user.orders
     authorize! :read, @orders
 
-    render json: @orders.to_json(include: [:user, :product])
+    render json: @orders.to_json(include: [:user, :product, :company])
   end
 
   # GET /orders/1
   def show
     authorize! :read, @orders
-    render json: @order.to_json(include: [:user, :product])
+    render json: @order.to_json(include: [:user, :product, :company])
   end
 
   # POST /orders
@@ -37,6 +38,7 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1
   def destroy
+    authorize! :destory, @order
     @order.destroy
   end
 
@@ -48,6 +50,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:product_id, :user_id)
+      params.require(:order).permit(:product_id, :user_id, :product_name, :quantity, :price, :company_id)
     end
 end
