@@ -13,6 +13,11 @@ class Ability
       can :create, Order
       can :read, Order, user_id: user.id
     end
+
+    if user.seller?
+      can :create, Product
+    end
+    
     can :manage, :all if user.role = "admin"
   end
 end

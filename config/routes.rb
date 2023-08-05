@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :orders
-  resources :products
+  resources :products  do
+    resources :reviews, only: [:index, :create] 
+  end
   resources :categories
   resources :companies
  

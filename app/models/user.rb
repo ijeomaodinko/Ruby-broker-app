@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum role: %i[user admin]
+  enum role: { user: 0, seller: 1, admin: 2 }
 after_initialize :set_default_role, :if => :new_record?
 
 has_many :orders, dependent: :destroy

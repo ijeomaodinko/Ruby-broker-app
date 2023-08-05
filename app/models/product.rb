@@ -8,4 +8,5 @@ class Product < ApplicationRecord
 
   belongs_to :category
   belongs_to :company
+  has_many :reviews
 end
