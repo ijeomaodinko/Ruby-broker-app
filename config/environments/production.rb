@@ -83,4 +83,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+ #to ignore /favicon.ico errors with a 204 No Content response.
+  config.exceptions_app = ->(env) do
+    request = ActionDispatch::Request.new(env)
+    if request.path == '/favicon.ico'
+      [204, { 'Content-Type' => 'text/plain' }, []] # No Content
+    else
+      ActionDispatch::PublicExceptions.new(Rails.public_path).call(env)
+    end
+  end
+  
 end
